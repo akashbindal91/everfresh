@@ -1,0 +1,44 @@
+<html ng-app="myApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>js/angular.min.js"></script>
+    <script src="<?php echo base_url();?>js/angular-route.min.js"></script>`
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+    <script src="<?php echo base_url();?>js/akkiscripts.js"></script>
+    <script src="<?php echo base_url();?>js/functionality.js"></script>
+    <!-- <script src="<?php echo base_url();?>js/angular-sanitize.min.js"></script> -->
+    <!-- <script src="<?php echo base_url();?>js/indexeddb.js"></script> -->
+    <!-- <script src="<?php echo base_url();?>ckeditor/dist/ng-ckeditor.js"></script> -->
+    <!-- <script src="//cdn.ckeditor.com/4.5.10/basic/ckeditor.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script> -->
+    <!-- <script src ="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script> -->
+    <script>
+        var BASE_URL = '<?php echo base_url();?>';
+    </script>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">AkkiEverFresh</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#AdminPanel">AdminPanel</a></li>
+                <li><a href="#BillingPanel">BillingSection</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div ng-view></div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<table class="table table-hover">
+	<tr>
+		<th>ID</th>
+		<th>TITLE</th>
+		<th>ARTICLE</th>
+		<th>WRITOR</th>
+	</tr>
+	<tr ng-repeat="article_detail in article_details ">
+		<td>{{article_detail.u_id}}</td>
+		<td>{{article_detail.title}}</td>
+		<td>{{article_detail.article}}</td>
+		<td>{{article_detail.writer}}</td>
+		<td>
+			<a href = "javascript:void(0);"><button class="btn btn-success" ng-click="getDataForUpdate(article_detail)" ><span class="glyphicon glyphicon-edit"></span></button></a>
+		</td>
+		<td>
+			<button class="btn btn-warning" ng-click="delete(article_detail)" ><span class="glyphicon glyphicon-trash"></span></button>
+		</td>
+		<td>
+			<button class="btn btn-info" ng-click="commenting(article_detail)" ><span class="glyphicon glyphicon-edit"></span></button>
+		</td>
+	</tr>
+</table>

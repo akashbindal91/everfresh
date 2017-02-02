@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ADMIN CONTROLLER</title>
+</head>
+<body>
+	<div>
+		<h3>INSERT NEW CATEGORY</h3>
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="category">Category</label>
+				<input type="text" class="form-control" ng-model="category" placeholder="Enter Category">
+			</div>
+			<button disabled type="submit" class="btn btn-default" ng-click = "submitCategory(category)">Submit</button>
+		</form>
+	<div>
+
+	<div>
+		<h3>INSERT NEW FOOD ITEM</h3>
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="category">Category</label>
+				<input type="text" class="form-control" ng-model="fi.category" placeholder="Enter Category">
+			</div>
+			<div class="form-group">
+				<label for="item">ITEM</label>
+				<input type="text" class="form-control" ng-model="fi.item" placeholder="Enter Item">
+			</div>
+			<div class="form-group">
+				<label for="price">PRICE</label>
+				<input type="text" class="form-control" ng-model="fi.price" placeholder="Enter price">
+			</div>
+			<button type="submit" class="btn btn-default" ng-click = "submitItem(fi)">Submit</button>
+		</form>
+	<div>
+{{msg}}
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html ng-app = "myApp">
+<head>
+	<script src="<?php echo base_url();?>js/angular.min.js"></script>
+	<script src="<?php echo base_url();?>js/angular-route.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+	<script src="<?php echo base_url();?>js/scriptNew.js"></script>
+	<script src="<?php echo base_url();?>js/angular-sanitize.min.js"></script>
+	<script src="<?php echo base_url();?>js/indexeddb.js"></script>
+	<script src="<?php echo base_url();?>ckeditor/dist/ng-ckeditor.js"></script>
+	<script src="//cdn.ckeditor.com/4.5.10/basic/ckeditor.js"></script>
+	 <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+	<script src ="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+	<script>
+		var BASE_URL = '<?php echo base_url();?>';
+	</script>
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+	<div ng-controller = "homeController" ng-init = "homepage()">
+
+
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<a class="navbar-brand" ng-click = "homepage_show_insertForm()"  ng-href="#">ITS MY BLOG</a>
+					</div>
+
+					<ul class="nav navbar-nav">
+						<li><a ng-href="#homepage">HOMEPAGE </a></li>
+						<li><a ng-href="#insert" ng-click = "homepage_hide_insertForm()">INSERT PAGE</a></li>
+						<li><a ng-href="#update" ng-click = "homepage_hide_insertForm()">EDIT ARTICLE</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a ng-href="#signup"  ng-hide = "login"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<!-- <li><a ng-href="#login" ng-hide = "login" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+						<li><a ng-href="#" ng-hide = "welcome" ><span class="glyphicon glyphicon-user"></span>WELCOME USER</a></li>
+						<li><a ng-href="#" ng-click = "logout()" ng-hide = "welcome"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+					</ul>
+
+				</div>
+			</nav>
+
+		<div class="container">
+
+			<div class="jumbotron">
+				<h1>ITS MY BLOG</h1>
+				<p>USED BOOTSTRAP BCOZ OF MY ABPS SENIOR</p>
+			</div>
+
+			<div ng-hide = "login">
+				<div class="container">
+
+					<div class="page-header">
+						<h3>LOGIN HERE</h3>
+					</div>
+
+					<form name = "loginForm">
+						<p>EMAIL<input type = "email"  ng-model = "log.email"  class="form-control" placeholder = "" required></p>
+
+						<p>PASSWORD<input type = "password"  ng-model = "log.password"  class="form-control" placeholder = "" required></p>
+
+						<input type = "button"  value = "submit"  class="btn btn-primary btn-block" ng-model = "signup_submit" ng-click = "lookup_login(log)">
+					</form>				
+				</div>
+			</div>
+
+			<div ng-view></div>
+		
+		</div>
+	</div>
+	<script>
+			// if('serviceWorker' in navigator)
+			// {
+			// 	console.log("its reading");
+			// 	console.log(BASE_URL + 'sw.js');
+			// 	navigator.serviceWorker
+			// 	.register(BASE_URL + 'sw.js')
+			// 	.then(function() { console.log("Service Worker Registered"); });
+			// }
+
+			navigator.serviceWorker.register ( BASE_URL + 'sw.js')
+			.then ( function ()
+			{
+				console.log( "yeh" );
+			})
+			.catch
+			( function ()
+			{
+				console.log( "sad" );
+			})
+
+</script>
+</body>
+</html>
