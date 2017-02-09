@@ -104,11 +104,11 @@ app.controller("BillingController", function($scope, $http) {
             });
     }
 
+    var checkItm = [];
+    var singleItem_name = [];
+
     $scope.selectItemsRate = function(items) {
         var itemcode = items.id;
-        var rateLen = $scope.checkOutRate.length;
-        var rate = $scope.checkOutRate;
-
         $http
             ({
                 method: 'POST',
@@ -121,10 +121,24 @@ app.controller("BillingController", function($scope, $http) {
                 })
             })
             .success(function(response) {
-                response.quantity = 1;
-                rate.push(response);
+                // console.log(response);
+                // response.quantity = 1;
+                // rate.push(response);
+                // $scope.checkOutRate = rate;
 
-                $scope.checkOutRate = rate;
+// ================================================================
+// ================================================================
+
+                if (singleItem_name.includes(String(response.item_name))) {
+                    var ind = singleItem_name.indexOf(String(response.item_name));
+                    checkItm[ind].quantity = checkItm[ind].quantity + 1;
+                } else {
+                    response.quantity = 1;
+                    checkItm.push(response);
+                    singleItem_name.push(response.item_name);
+                }
+
+                $scope.checkOutRate = checkItm;
             })
     }
 
@@ -141,8 +155,16 @@ app.controller("BillingController", function($scope, $http) {
                 })
             })
             .success(function(response) {
-                rate.push(response);
-                $scope.checkOutRate = rate;
+                if (singleItem_name.includes(String(response.item_name))) {
+                    var ind = singleItem_name.indexOf(String(response.item_name));
+                    checkItm[ind].quantity = checkItm[ind].quantity + 1;
+                } else {
+                    response.quantity = 1;
+                    checkItm.push(response);
+                    singleItem_name.push(response.item_name);
+                }
+
+                $scope.checkOutRate = checkItm;
             })
     }
 
@@ -150,7 +172,8 @@ app.controller("BillingController", function($scope, $http) {
     $scope.final.quantity = 1;
 
     $scope.removeItem = function(index) {
-        $scope.checkOutRate.splice(index, 1);
+        singleItem_name.splice(index, 1);
+        checkItm.splice(index, 1);
     }
 
     $scope.total = function() {
