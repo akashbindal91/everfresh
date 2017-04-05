@@ -1,26 +1,22 @@
 <?php
 require_once(APPPATH.'/libraries/REST_Controller.php');
-class Homepage extends REST_Controller
-{
-	public function __construct()
-	{
+class Homepage extends REST_Controller {
+	public function __construct() {
 		parent::__construct();
 		$this->load->model('Akkieverfresh');
 		$this->load->helper('url');
 	}
 
-	public function index_get()
-	{
+	public function index_get() {
 		$this->load->view("homepage2.html");
 	}
 
-	public function secondView_get()
-	{
-		$this->load->view("secondView.html");
+	public function secondView_get() {
+		// $this->load->view("secondView.html");
+		$this->load->view("secondView_trial.html");
 	}
 
-	public function mainView_get()
-	{
+	public function mainView_get() {
 		$this->load->view("mainView.html");
 	}
 
@@ -35,11 +31,29 @@ class Homepage extends REST_Controller
 	public function submitItemWithRate_post() {
 		$postdata = file_get_contents("php://input");
 		$request  = json_decode($postdata);
-		$cat = $request->cat;
+
+		$cat = $request->cat;	
 		$item = $request->item;
-		$price = $request->price;
-		$query = $this->Akkieverfresh->submitItemWithRate($cat,$item,$price);
-		$this->response($query);
+
+		$regular_item = $request->regularDish;
+		$small_item = $request->smallDish;
+		$medium_item = $request->mediumDish;
+		$large_item = $request->largeDish;
+		$extralarge_item = $request->extralargeDish;
+
+		$regular_item_price = $request->regularDishPrice;
+		$small_item_price = $request->smallDishPrice;
+		$medium_item_price = $request->mediumDishPrice;
+		$large_item_price = $request->largeDishPrice;
+		$extralarge_item_price = $request->extralargeDishPrice;
+
+		$query = $this->Akkieverfresh->submitItemWithRate($cat,$item,$regular_item,$small_item,$medium_item,$large_item,$extralarge_item,$regular_item_price,$small_item_price,$medium_item_price,$large_item_price,$extralarge_item_price);
+		return $query;
+	}
+
+	public function get_Category_List_get() {
+		$res['categories'] = $this->Akkieverfresh->get_Category_List();
+		$this->response($res);
 	}
 
 	public function getItemDetail_post() {
@@ -62,7 +76,5 @@ class Homepage extends REST_Controller
 			$this->response($res);
 		}
 	}
-
-	
 }
 ?>

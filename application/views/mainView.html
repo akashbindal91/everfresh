@@ -3,7 +3,7 @@
 <head>
 	<title>ADMIN CONTROLLER</title>
 </head>
-<body>
+<body ng-init = "categoryList()">
 	<div>
 		<h3>INSERT NEW CATEGORY</h3>
 		<form class="form-inline">
@@ -11,26 +11,39 @@
 				<label for="category">Category</label>
 				<input type="text" class="form-control" ng-model="category" placeholder="Enter Category">
 			</div>
-			<button disabled type="submit" class="btn btn-default" ng-click = "submitCategory(category)">Submit</button>
+			<button type="submit" class="btn btn-default" ng-click = "submitCategory(category)">Submit</button>
 		</form>
 	<div>
 
-	<div>
+	<div ng-init = "categoryList()">
 		<h3>INSERT NEW FOOD ITEM</h3>
 		<form class="form-inline">
 			<div class="form-group">
 				<label for="category">Category</label>
-				<input type="text" class="form-control" ng-model="fi.category" placeholder="Enter Category">
+				<select class="form-control" ng-model="fi.category" ng-change = "showValue(fi.category)">
+					<option class="form-control" ng-repeat="x in names" ng-value = "x.id" >{{x.category | uppercase}}</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="item">ITEM</label>
 				<input type="text" class="form-control" ng-model="fi.item" placeholder="Enter Item">
 			</div>
-			<div class="form-group">
-				<label for="price">PRICE</label>
-				<input type="text" class="form-control" ng-model="fi.price" placeholder="Enter price">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="fi.regular" value = "regular"> REGULAR</label>
+				<input ng-if = "fi.regular" type="number" class="form-control" ng-model="fi.regular_price" min="0" required placeholder="Enter price"><br>
+				<label><input type="checkbox" ng-model="fi.small" value = "small"> SMALL</label>
+				<input ng-if = "fi.small" type="number" class="form-control" ng-model="fi.small_size_price" min="0" required placeholder="Enter price"><br>
+				<label><input type="checkbox" ng-model="fi.medium"  value = "medium"> MEDIUM</label>
+				<input ng-if = "fi.medium" type="number" class="form-control" ng-model="fi.medium_size_price" min="0" required placeholder="Enter price"><br>
+				<label><input type="checkbox" ng-model="fi.large" value = "large"> LARGE</label>
+				<input ng-if = "fi.large" type="number" class="form-control" ng-model="fi.large_size_price" min="0" required placeholder="Enter price"><br>
+				<label><input type="checkbox" ng-model="fi.extralarge" value = "extralarge"> EXTRA LARGE</label>
+				<input ng-if = "fi.extralarge" type="number" class="form-control" ng-model="fi.extralarge_size_price" placeholder="Enter price" min="0" required><br>
+		    </div>
+			<div  class="form-group">
+				<button type="submit" ng-disabled = "fi.category==undefined || fi.item==undefined" class="btn btn-default" ng-click = "submitItem(fi)">Submit</button>
+				<button type="reset" class="btn btn-default">Reset</button>
 			</div>
-			<button type="submit" class="btn btn-default" ng-click = "submitItem(fi)">Submit</button>
 		</form>
 	<div>
 {{msg}}
